@@ -17,9 +17,15 @@ const port = process.env.PORT || 5000
 connectDB()
 connectCloudinary()
 
+// ✅ CORS FIX (IMPORTANT)
+app.use(cors({
+  origin: "https://vastraa-store.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}))
+
 // Middlewares
 app.use(express.json())
-app.use(cors())
 
 // Routes
 app.use('/api/user', userRouter)
